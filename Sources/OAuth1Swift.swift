@@ -114,9 +114,9 @@ open class OAuth1Swift: OAuthSwift {
                 // 2. Authorize
                 if let token = self.encode(token: credential.oauthToken) {
                     var urlString = self.authorizeUrl + (self.authorizeUrl.contains("?") ? "&" : "?")
-                    urlString += "\(self.authorizeURLOAuthTokenParam)=\(token)"
+                    urlString += "\(self.authorizeURLOAuthTokenParam)=\(token.encodedURL)"
                     if self.addConsumerKeyToAuthorizeURL {
-                        urlString += "&\(self.authorizeURLConsumerKeyParam)=\(self.consumerKey)"
+                        urlString += "&\(self.authorizeURLConsumerKeyParam)=\(self.consumerKey.encodedURL)"
                     }
                     if self.addCallbackURLToAuthorizeURL {
                         urlString += "&oauth_callback=\(callbackURL.absoluteString)"
